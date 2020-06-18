@@ -1,0 +1,14 @@
+name: bowser
+version: 0.1.0
+
+authors:
+  - Chris Watson <cawatson1993@gmail.com>
+
+dependencies:
+  semantic_compare:
+    github: j8r/semantic_compare
+    branch: master
+
+crystal: 0.35.0
+
+license: MIT
