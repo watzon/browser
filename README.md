@@ -31,8 +31,8 @@ browser.electron?            # Electron Framework
 browser.firefox?
 browser.full_version
 browser.ie?
-browser.ie?(6)               # detect specific IE version
-browser.ie?([">8", "<10"])   # detect specific IE (IE9).
+browser.ie?("~6.0.0")        # detect specific IE version
+browser.ie?(">=9.0.0"])      # detect specific IE (IE9).
 browser.known?               # has the browser been successfully detected?
 browser.unknown?             # the browser wasn't detected.
 browser.meta                 # an array with several attributes
@@ -100,17 +100,17 @@ browser.platform.name
 browser.platform.version  # e.g. 9 (for iOS9)
 browser.platform.adobe_air?
 browser.platform.android?
-browser.platform.android?(4.2)   # detect Android Jelly Bean 4.2
-browser.platform.android_app?     # detect webview in an Android app
-browser.platform.android_webview? # alias for android_app?
+browser.platform.android?("~4.2.0") # detect Android Jelly Bean 4.2
+browser.platform.android_app?       # detect webview in an Android app
+browser.platform.android_webview?   # alias for android_app?
 browser.platform.blackberry?
-browser.platform.blackberry?(10) # detect specific BlackBerry version
+browser.platform.blackberry?("10.0.0") # detect specific BlackBerry version
 browser.platform.chrome_os?
 browser.platform.firefox_os?
 browser.platform.ios?     # detect iOS
-browser.platform.ios?(9)  # detect specific iOS version
-browser.platform.ios_app?     # detect webview in an iOS app
-browser.platform.ios_webview? # alias for ios_app?
+browser.platform.ios?("9.0.0")  # detect specific iOS version
+browser.platform.ios_app?       # detect webview in an iOS app
+browser.platform.ios_webview?   # alias for ios_app?
 browser.platform.linux?
 browser.platform.mac?
 browser.platform.unknown?
