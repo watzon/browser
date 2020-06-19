@@ -143,12 +143,12 @@ To detect whether a browser can be considered as modern or not, create a method 
 # Expects an Browser instance,
 # like in `Browser.new(user_agent, accept_language: language)`.
 def modern_browser?(browser)
-  browser.chrome?(">= 65.0.0"),
-  browser.safari?(">= 10.0.0"),
-  browser.firefox?(">= 52.0.0"),
-  browser.ie?(">= 11.0.0") && !browser.compatibility_view?,
-  browser.edge?(">= 15.0.0"),
-  browser.opera?(">= 50.0.0"),
+  browser.chrome?(">=65.0.0"),
+  browser.safari?(">=10.0.0"),
+  browser.firefox?(">=52.0.0"),
+  browser.ie?(">=11.0.0") && !browser.compatibility_view?,
+  browser.edge?(">=15.0.0"),
+  browser.opera?(">=50.0.0"),
   browser.facebook? &&
     browser.safari_webapp_mode? &&
     browser.webkit_full_version.split('.').first.to_i >= 602
