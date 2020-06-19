@@ -155,9 +155,47 @@ def modern_browser?(browser)
 end
 ```
 
-### Lucky Framework integration
+### Framework integration
 
-**Coming soon!**
+This library is extremely easy to integrate into most any Crystal HTTP server or framework. Here's a simple example using the built in `HTTP::Server`:
+
+```crystal
+require "http/server"
+
+require "browser"
+require "browser/extensions/http"
+
+server = HTTP::Server.new do |context|
+  unless context.browser.chrome?
+    context.response.content_type = "text/plain"
+    context.response.print "Please use Chrome to access our site"
+  end
+
+  # ... Other things 
+end
+
+puts "Listening on http://127.0.0.1:8080"
+server.listen(8080)
+```
+
+[browser/extensions/http](./src/browser/extensions/http.cr) monkey patches the `HTTP::Server::Context` to add a `browser` method, which returns information about the browser making the request. The `Browser` object itself is lazily created, so you don't have to worry about it being created on every request if you don't access it.
+
+Using this same extension, any framework which uses the `HTTP::Server` underneath should also have access to the browser context. For instance, [Lucky](https://luckyframework.org):
+
+```crystal
+class Home::Index < BrowserAction
+  include Auth::AllowGuests
+
+  get "/" do
+    # Terrible idea, but let's do it anyway
+    if context.browser.mobile?
+      redirect to: "https://mobile.mysite.com"
+    else
+      # ...
+    end
+  end
+end
+```
 
 ### Accept Language
 
