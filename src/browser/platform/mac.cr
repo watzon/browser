@@ -6,7 +6,7 @@ module Browser
       end
 
       def name : String
-        return "macOS" if platform.mac?(">= 10.12")
+        return "macOS" if platform.try(&.mac?(">= 10.12"))
 
         "Mac OS X"
       end
