@@ -13,7 +13,7 @@ module Browser
     end
 
     def match? : Bool
-      !!(ua =~ %r{(Opera|OPR/)})
+      ua.matches?(%r{(Opera|OPR/)})
     end
   end
 end

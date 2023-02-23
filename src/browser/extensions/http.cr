@@ -4,6 +4,6 @@ class HTTP::Server::Context
   def browser : Browser::Base
     headers = request.headers
     @_browser ||= Browser.new(headers.fetch("User-Agent", nil),
-                              accept_language: headers.fetch("Accept-Language", nil))
+      accept_language: headers.fetch("Accept-Language", nil))
   end
 end

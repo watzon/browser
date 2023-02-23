@@ -2,7 +2,7 @@ module Browser
   class Platform
     class AdobeAir < Base
       def match? : Bool
-        !!(ua =~ /AdobeAIR/)
+        ua.includes?("AdobeAIR")
       end
 
       def version : String

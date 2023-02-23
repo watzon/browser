@@ -15,7 +15,7 @@ module Browser
     end
 
     def match? : Bool
-      !!(ua =~ /BlackBerry|BB10/)
+      ua.matches?(/BlackBerry|BB10/)
     end
   end
 end

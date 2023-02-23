@@ -17,7 +17,7 @@ module Browser
     end
 
     def match? : Bool
-      !!(ua =~ %r{QQ/|QQBrowser}i)
+      ua.matches?(%r{QQ/|QQBrowser}i)
     end
   end
 end

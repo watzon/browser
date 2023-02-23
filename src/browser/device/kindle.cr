@@ -10,7 +10,7 @@ module Browser
       end
 
       def match? : Bool
-        !!(ua =~ /Kindle/)
+        ua.includes?("Kindle")
       end
     end
   end

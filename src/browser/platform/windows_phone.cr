@@ -14,7 +14,7 @@ module Browser
       end
 
       def match? : Bool
-        !!(ua =~ /Windows Phone/)
+        ua.includes?("Windows Phone")
       end
     end
   end

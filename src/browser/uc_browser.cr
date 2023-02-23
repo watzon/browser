@@ -13,7 +13,7 @@ module Browser
     end
 
     def match? : Bool
-      !!(ua =~ /UCBrowser/)
+      ua.includes?("UCBrowser")
     end
   end
 end

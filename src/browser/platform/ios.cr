@@ -1,7 +1,7 @@
 module Browser
   class Platform
     class IOS < Base
-      MATCHER = /(iPhone|iPad|iPod)/
+      MATCHER         = /(iPhone|iPad|iPod)/
       VERSION_MATCHER =
         /OS ((?<major>\d+)_(?<minor>\d+)_?(?<patch>\d+)?)/
 
@@ -30,7 +30,7 @@ module Browser
       end
 
       def match? : Bool
-        !!(ua =~ MATCHER)
+        ua.matches?(MATCHER)
       end
 
       def device

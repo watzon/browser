@@ -10,7 +10,7 @@ module Browser
       end
 
       def match? : Bool
-        !!(ua =~ /PLAYSTATION 3/i)
+        ua.matches?(/PLAYSTATION 3/i)
       end
     end
   end

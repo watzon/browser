@@ -14,7 +14,7 @@ module Browser
       end
 
       def match? : Bool
-        !!(ua =~ /Windows/)
+        ua.includes?("Windows")
       end
     end
   end

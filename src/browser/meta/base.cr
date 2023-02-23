@@ -12,7 +12,7 @@ module Browser
         Proxy,
         Safari,
         Tablet,
-        Webkit
+        Webkit,
       ]
     end
 

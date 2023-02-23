@@ -16,7 +16,7 @@ module Browser
       end
 
       def match? : Bool
-        !!(ua =~ /Mac/)
+        ua.includes?("Mac")
       end
     end
   end

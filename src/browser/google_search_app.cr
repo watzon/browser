@@ -1,20 +1,19 @@
 module Browser
-  class Electron < Base
+  class GoogleSearchApp < Chrome
     def id : String
-      "electron"
+      "google_search_app"
     end
 
     def name : String
-      "Electron"
+      "Google Search App"
     end
 
     def full_version : String
-      ua[%r{Electron/([\d.]+)}, 1]? ||
-        "0.0"
+      ua[%r{GSA/([\d.]+\d)}, 1]? || super
     end
 
     def match? : Bool
-      ua.includes?("Electron")
+      ua.includes?("GSA")
     end
   end
 end

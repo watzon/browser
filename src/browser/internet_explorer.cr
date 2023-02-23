@@ -6,7 +6,7 @@ module Browser
       "5.0" => "9",
       "6.0" => "10",
       "7.0" => "11",
-      "8.0" => "12"
+      "8.0" => "12",
     }
 
     def id : String
@@ -22,11 +22,8 @@ module Browser
     end
 
     def msie_full_version
-      if match = ua.match(%r{MSIE ([\d.]+)|Trident/.*?; rv:([\d.]+)})
-        $1? || $2? || "0.0"
-      else
-        "0.0"
-      end
+      (ua.match(%r{MSIE ([\d.]+)|Trident/.*?; rv:([\d.]+)}) &&
+        ($1? || $2?)) || "0.0"
     end
 
     def msie_version
@@ -48,15 +45,15 @@ module Browser
 
     # Return the trident version.
     private def trident_version
-      ua[%r{Trident/([0-9.]+)}, 1]?
+      ua.match(%r{Trident/([0-9.]+)}) && $1?
     end
 
     private def msie?
-      !!(ua =~ /MSIE/ && ua !~ /Opera/)
+      ua.includes?("MSIE") && !ua.includes?("Opera")
     end
 
     private def modern_ie?
-      !!(ua =~ %r{Trident/.*?; rv:(.*?)})
+      ua.matches?(%r{Trident/.*?; rv:(.*?)})
     end
   end
 end

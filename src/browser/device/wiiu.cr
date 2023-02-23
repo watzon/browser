@@ -10,7 +10,7 @@ module Browser
       end
 
       def match? : Bool
-        !!(ua =~ /Nintendo WiiU/i)
+        ua.matches?(/Nintendo WiiU/i)
       end
     end
   end

@@ -13,7 +13,7 @@ module Browser
     end
 
     def match? : Bool
-      !!(ua =~ /Firefox|FxiOS/)
+      ua.matches?(/Firefox|FxiOS/)
     end
   end
 end

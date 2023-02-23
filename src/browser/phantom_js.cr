@@ -13,7 +13,7 @@ module Browser
     end
 
     def match? : Bool
-      !!(ua =~ /PhantomJS/)
+      ua.includes?("PhantomJS")
     end
   end
 end

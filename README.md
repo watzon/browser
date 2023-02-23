@@ -24,6 +24,7 @@ browser = Browser.new("Some User Agent", accept_language: "en-us")
 # General info
 browser.bot?
 browser.chrome?
+browser.chromium_based?
 browser.core_media?
 browser.duck_duck_go?
 browser.edge?                # Newest MS browser
@@ -31,8 +32,8 @@ browser.electron?            # Electron Framework
 browser.firefox?
 browser.full_version
 browser.ie?
-browser.ie?("~6.0.0")        # detect specific IE version
-browser.ie?(">=9.0.0"])      # detect specific IE (IE9).
+browser.ie?(6)               # detect specific IE version
+browser.ie?([">8", "<10"])   # detect specific IE (IE9).
 browser.known?               # has the browser been successfully detected?
 browser.unknown?             # the browser wasn't detected.
 browser.meta                 # an array with several attributes
@@ -52,9 +53,10 @@ browser.webkit?
 browser.webkit_full_version
 browser.yandex?
 browser.wechat?
+browser.qq?
 browser.weibo?
-browser.yandex?
 browser.sputnik?
+browser.sougou_browser?
 
 # Get bot info
 browser.bot.name
@@ -88,6 +90,7 @@ browser.device.tv?
 browser.device.vita?
 browser.device.wii?
 browser.device.wiiu?
+browser.device.samsung?
 browser.device.switch?
 browser.device.xbox?
 browser.device.xbox_360?
@@ -100,17 +103,17 @@ browser.platform.name
 browser.platform.version  # e.g. 9 (for iOS9)
 browser.platform.adobe_air?
 browser.platform.android?
-browser.platform.android?("~4.2.0") # detect Android Jelly Bean 4.2
-browser.platform.android_app?       # detect webview in an Android app
-browser.platform.android_webview?   # alias for android_app?
+browser.platform.android?(4.2)   # detect Android Jelly Bean 4.2
+browser.platform.android_app?     # detect webview in an Android app
+browser.platform.android_webview? # alias for android_app?
 browser.platform.blackberry?
-browser.platform.blackberry?("10.0.0") # detect specific BlackBerry version
+browser.platform.blackberry?(10) # detect specific BlackBerry version
 browser.platform.chrome_os?
 browser.platform.firefox_os?
 browser.platform.ios?     # detect iOS
-browser.platform.ios?("9.0.0")  # detect specific iOS version
-browser.platform.ios_app?       # detect webview in an iOS app
-browser.platform.ios_webview?   # alias for ios_app?
+browser.platform.ios?(9)  # detect specific iOS version
+browser.platform.ios_app?     # detect webview in an iOS app
+browser.platform.ios_webview? # alias for ios_app?
 browser.platform.linux?
 browser.platform.mac?
 browser.platform.unknown?
@@ -128,6 +131,7 @@ browser.platform.windows_wow64?
 browser.platform.windows_x64?
 browser.platform.windows_x64_inclusive?
 browser.platform.windows_xp?
+browser.platform.kai_os?
 ```
 
 ### What's being detected?
@@ -143,15 +147,17 @@ To detect whether a browser can be considered as modern or not, create a method 
 # Expects an Browser instance,
 # like in `Browser.new(user_agent, accept_language: language)`.
 def modern_browser?(browser)
-  browser.chrome?(">=65.0.0"),
-  browser.safari?(">=10.0.0"),
-  browser.firefox?(">=52.0.0"),
-  browser.ie?(">=11.0.0") && !browser.compatibility_view?,
-  browser.edge?(">=15.0.0"),
-  browser.opera?(">=50.0.0"),
-  browser.facebook? &&
-    browser.safari_webapp_mode? &&
-    browser.webkit_full_version.split('.').first.to_i >= 602
+  [
+    browser.chrome?(">= 65"),
+    browser.safari?(">= 10"),
+    browser.firefox?(">= 52"),
+    browser.ie?(">= 11") && !browser.compatibility_view?,
+    browser.edge?(">= 15"),
+    browser.opera?(">= 50"),
+    browser.facebook?
+      && browser.safari_webapp_mode?
+      && browser.webkit_full_version.to_i >= 602
+  ].any?
 end
 ```
 
@@ -205,7 +211,7 @@ Parses the accept-language header from an HTTP request and produces an array of 
 browser = Browser.new("Some User Agent", accept_language: "en-us")
 
 browser.accept_language.class
-#=> Array(Browser::AcceptLanguage)
+#=> Array
 
 language = browser.accept_language.first
 
@@ -299,13 +305,9 @@ To clear all matchers, including the ones that are bundled, use `Browser::Bot.ma
 Browser::Bot.matchers += Browser::Bot.default_matchers
 ```
 
-### Kemal Middleware
+### Lucky Integration
 
-**Coming soon!**
-
-## Development
-
-TODO: Write development instructions here
+Coming soon!!!
 
 ## Contributing
 

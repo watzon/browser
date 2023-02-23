@@ -16,14 +16,22 @@ module Browser
     end
 
     def match? : Bool
-      !!(ua =~ /Safari/ &&
-         ua !~ /PhantomJS|FxiOS/ &&
-         !edge? &&
-         !chrome? &&
-         !samsung_browser? &&
-         !duck_duck_go? &&
-         !yandex? &&
-         !sputnik?)
+      ua.includes?("Safari") &&
+        !ua.matches?(/PhantomJS|FxiOS/) &&
+        !edge? &&
+        !chrome? &&
+        !opera? &&
+        !samsung_browser? &&
+        !huawei_browser? &&
+        !miui_browser? &&
+        !duck_duck_go? &&
+        !yandex? &&
+        !sputnik? &&
+        !maxthon? &&
+        !qq? &&
+        !alipay? &&
+        !sougou_browser? &&
+        !google_search_app?
     end
   end
 end

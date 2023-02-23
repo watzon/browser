@@ -1,20 +1,19 @@
 module Browser
-  class Electron < Base
+  class Maxthon < Base
     def id : String
-      "electron"
+      "maxthon"
     end
 
     def name : String
-      "Electron"
+      "Maxthon"
     end
 
     def full_version : String
-      ua[%r{Electron/([\d.]+)}, 1]? ||
-        "0.0"
+      ua[%r{(?:Maxthon)/([\d.]+)}i, 1]? || "0.0"
     end
 
     def match? : Bool
-      ua.includes?("Electron")
+      ua.matches?(/Maxthon/i)
     end
   end
 end

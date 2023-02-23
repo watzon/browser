@@ -2,7 +2,7 @@ module Browser
   class Platform
     class Android < Base
       def match? : Bool
-        !!(ua =~ /Android/)
+        ua.includes?("Android") && !ua.includes?("KAIOS")
       end
 
       def name : String
@@ -14,7 +14,7 @@ module Browser
       end
 
       def version : String
-        ua[/Android ([\d.]+)/, 1]
+        ua[/Android ([\d.]+)/, 1]? || "0.0"
       end
     end
   end

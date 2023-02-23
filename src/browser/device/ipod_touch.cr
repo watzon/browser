@@ -10,7 +10,7 @@ module Browser
       end
 
       def match? : Bool
-        !!(ua =~ /iPod/)
+        ua.includes?("iPod")
       end
     end
   end

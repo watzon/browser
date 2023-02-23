@@ -13,7 +13,7 @@ module Browser
     end
 
     def match? : Bool
-      !!(ua =~ /Snapchat/)
+      ua.includes?("Snapchat")
     end
   end
 end

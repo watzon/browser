@@ -2,7 +2,7 @@ module Browser
   class Unknown < Base
     NAMES = {
       "QuickTime" => "QuickTime",
-      "CoreMedia" => "Apple CoreMedia"
+      "CoreMedia" => "Apple CoreMedia",
     }
 
     def id : String

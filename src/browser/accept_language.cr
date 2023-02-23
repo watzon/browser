@@ -14,19 +14,19 @@ module Browser
     end
 
     def self.languages
-      @@languages ||= YAML.parse(File.read("data/languages.yml")).as_h
+      @@languages ||= YAML.parse({{ read_file "data/languages.yml" }}).as_h
         .transform_keys(&.as_s)
         .transform_values(&.as_s)
     end
 
     def self.parse(accept_language)
-      return [] of AcceptLanguage unless accept_language
+      return [] of AcceptLanguage if accept_language.nil? || accept_language.empty?
 
       accept_language
         .split(",")
-        .map {|string| string.squeeze(" ").strip }
-        .map {|part| new(part) }
-        .reject {|al| al.quality.zero? }
+        .map { |string| string.squeeze(" ").strip }
+        .map { |part| new(part) }
+        .reject { |al| al.quality.zero? }
         .map_with_index { |al, i| {al, i} }
         .sort_by { |al, i| [-al.quality, i] }
         .map(&.[0])

@@ -14,7 +14,7 @@ module Browser
     end
 
     def match? : Bool
-      !!(ua =~ /DuckDuckGo/)
+      ua.includes?("DuckDuckGo")
     end
   end
 end

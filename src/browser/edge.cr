@@ -13,11 +13,11 @@ module Browser
     end
 
     def match? : Bool
-      !!(ua =~ %r{((?:Edge|Edg|EdgiOS|EdgA)/[\d.]+|Trident/8)})
+      ua.matches?(%r{((?:Edge|Edg|EdgiOS|EdgA)/[\d.]+|Trident/8)})
     end
 
-    def chrome_based?
-      match? && !!(ua =~ /\bEdg\b/)
+    def chromium_based?
+      match? && ua.matches?(/\bEdg\b/)
     end
   end
 end

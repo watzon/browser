@@ -1,16 +1,16 @@
 module Browser
   class Device
-    class Switch < Base
+    class PlayStation5 < Base
       def id : String
-        "switch"
+        "ps5"
       end
 
       def name : String
-        "Nintendo Switch"
+        "PlayStation 5"
       end
 
       def match? : Bool
-        ua.matches?(/Nintendo Switch/i)
+        ua.matches?(/PLAYSTATION 5/i)
       end
     end
   end

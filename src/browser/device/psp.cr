@@ -10,7 +10,7 @@ module Browser
       end
 
       def match? : Bool
-        !!(ua =~ /PlayStation Portable/)
+        ua.includes?("PlayStation Portable")
       end
     end
   end

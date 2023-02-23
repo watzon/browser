@@ -14,7 +14,7 @@ module Browser
       end
 
       def match? : Bool
-        !!(ua =~ /Linux/)
+        ua.includes?("Linux")
       end
     end
   end

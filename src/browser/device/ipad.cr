@@ -10,7 +10,7 @@ module Browser
       end
 
       def match? : Bool
-        !!(ua =~ /iPad/)
+        ua.includes?("iPad")
       end
     end
   end

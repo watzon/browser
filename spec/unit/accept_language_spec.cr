@@ -1,63 +1,63 @@
 require "../spec_helper"
 
-def assert_language(item, **expect)
-  expect[:code].should eq(item.code)
+Spectator.describe Browser::AcceptLanguage do
+  def assert_language(item, **expectation)
+    expect(expectation[:code]).to eq(item.code)
 
-  if region = expect[:region]?
-    region.should eq(item.region)
-  else
-    item.region.should be_nil
+    if region = expectation[:region]?
+      expect(region).to eq(item.region)
+    else
+      expect(item.region).to be_nil
+    end
+
+    expect(expectation[:quality]).to eq(item.quality)
   end
 
-  expect[:quality].should eq(item.quality)
-end
-
-describe Browser::AcceptLanguage do
   it "returns full language" do
     language = Browser::AcceptLanguage.new("en-GB")
-    language.full.should eq("en-GB")
+    expect(language.full).to eq("en-GB")
   end
 
   it "returns language name" do
     language = Browser::AcceptLanguage.new("en-GB")
-    language.name.should eq("English/United Kingdom")
+    expect(language.name).to eq("English/United Kingdom")
 
     language = Browser::AcceptLanguage.new("en")
-    language.name.should eq("English")
+    expect(language.name).to eq("English")
   end
 
   it "returns nil for unknown languages" do
     language = Browser::AcceptLanguage.new("unknown")
-    language.name.should be_nil
+    expect(language.name).to be_nil
   end
 
   it "returns the language code" do
     language = Browser::AcceptLanguage.new("en-GB")
-    language.code.should eq("en")
+    expect(language.code).to eq("en")
   end
 
   it "returns a formatted code" do
     ["EN-GB", "En-GB", "eN-GB"].each do |locale|
       language = Browser::AcceptLanguage.new(locale)
-      language.code.should eq("en")
+      expect(language.code).to eq("en")
     end
   end
 
   it "returns the region" do
     language = Browser::AcceptLanguage.new("en-GB")
-    language.region.should eq("GB")
+    expect(language.region).to eq("GB")
   end
 
   it "returns a formatted region" do
     ["EN-GB", "En-GB", "eN-GB"].each do |locale|
       language = Browser::AcceptLanguage.new(locale)
-      language.region.should eq("GB")
+      expect(language.region).to eq("GB")
     end
   end
 
   it "returns nil for a language with no region" do
     language = Browser::AcceptLanguage.new("en")
-    language.region.should be_nil
+    expect(language.region).to be_nil
   end
 
   it "parses language with quality" do
@@ -83,7 +83,7 @@ describe Browser::AcceptLanguage do
   it "parses multi-language set" do
     result = Browser::AcceptLanguage.parse("fr-CA,fr;q=0.8")
 
-    result.size.should eq(2)
+    expect(result.size).to eq(2)
     assert_language(result[0], code: "fr", region: "CA", quality: 1.0)
     assert_language(result[1], code: "fr", region: nil, quality: 0.8)
   end
@@ -141,7 +141,7 @@ describe Browser::AcceptLanguage do
   it "rejects quality values equal to zero" do
     result = Browser::AcceptLanguage.parse("de-DE,ru;q=0.9,de;q=0.8,en;q=0.")
 
-    result.size.should eq(3)
+    expect(result.size).to eq(3)
     assert_language(result[0], code: "de", region: "DE", quality: 1.0)
     assert_language(result[1], code: "ru", region: nil, quality: 0.9)
     assert_language(result[2], code: "de", region: nil, quality: 0.8)
@@ -151,12 +151,12 @@ describe Browser::AcceptLanguage do
     accept_language = "fr-CH, fr;q=0.9, en;q=0.8, de;q=0..7, *;q=0.5"
     result = Browser::AcceptLanguage.parse(accept_language)
 
-    result.size.should eq(5)
+    expect(result.size).to eq(5)
     assert_language(result[3], code: "de", region: nil, quality: 0.7)
   end
 
   it "sets the default quality value for invalid strings" do
     result = Browser::AcceptLanguage.parse(";q=0.0.0.0")
-    result[0].quality.should eq(0.1)
+    expect(result[0].quality).to eq(0.1)
   end
 end

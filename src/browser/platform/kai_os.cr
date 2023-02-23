@@ -1,20 +1,20 @@
 module Browser
   class Platform
-    class WindowsMobile < Base
+    class KaiOS < Base
       def version : String
-        "0"
+        ua[%r{KAIOS/([\d.]+)}, 1]? || "0.0"
       end
 
       def name : String
-        "Windows Mobile"
+        "KaiOS"
       end
 
       def id : String
-        "windows_mobile"
+        "kai_os"
       end
 
       def match? : Bool
-        ua.includes?("Windows CE")
+        ua.includes?("KAIOS")
       end
     end
   end

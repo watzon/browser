@@ -10,7 +10,7 @@ module Browser
       end
 
       def match? : Bool
-        !!(ua =~ /Kindle Fire|KFTT/)
+        ua.matches?(/Kindle Fire|KFTT/)
       end
     end
   end

@@ -10,7 +10,7 @@ module Browser
       end
 
       def match? : Bool
-        !!(ua =~ /Xbox One/i)
+        ua.matches?(/Xbox One/i)
       end
     end
   end

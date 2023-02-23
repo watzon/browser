@@ -13,7 +13,7 @@ module Browser
     end
 
     def match? : Bool
-      !!(ua =~ /MicroMessenger/i)
+      ua.matches?(/MicroMessenger/i)
     end
   end
 end

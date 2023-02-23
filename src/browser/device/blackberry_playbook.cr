@@ -10,7 +10,7 @@ module Browser
       end
 
       def match? : Bool
-        !!(ua =~ /PlayBook.*?RIM Tablet/)
+        ua.matches?(/PlayBook.*?RIM Tablet/)
       end
     end
   end

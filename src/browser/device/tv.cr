@@ -10,7 +10,7 @@ module Browser
       end
 
       def match? : Bool
-        !!(ua =~ /(\btv|Android.*?ADT-1|Nexus Player)/i)
+        ua.matches?(/(\btv|Android.*?ADT-1|Nexus Player)/i)
       end
     end
   end

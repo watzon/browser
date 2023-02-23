@@ -11,7 +11,7 @@ module Browser
       end
 
       def match? : Bool
-        !!(ua =~ /Android/)
+        ua.includes?("Android")
       end
     end
   end

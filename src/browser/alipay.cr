@@ -13,7 +13,7 @@ module Browser
     end
 
     def match? : Bool
-      !!(ua =~ /AlipayClient/i)
+      ua.matches?(/AlipayClient/i)
     end
   end
 end

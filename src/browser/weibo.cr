@@ -13,7 +13,7 @@ module Browser
     end
 
     def match? : Bool
-      !!(ua =~ /__weibo__/i)
+      ua.matches?(/__weibo__/i)
     end
   end
 end

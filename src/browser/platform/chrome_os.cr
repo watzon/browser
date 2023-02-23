@@ -2,7 +2,7 @@ module Browser
   class Platform
     class ChromeOS < Base
       def match? : Bool
-        !!(ua =~ /CrOS/)
+        ua.includes?("CrOS")
       end
 
       def name : String
